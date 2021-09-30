@@ -20,4 +20,6 @@ Note: Tested on Mac M1 (CPU-only) with `conda` installed and managed via `minifo
    pip install numpy matplotlib jupyter jupyterlab ipdb tqdm natsort
    pip install torch torchvision torchaudio torchtext
    conda install transformers
+   pip install fast-pytorch-kmeans
+   pip install bokeh
    ```
