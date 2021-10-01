@@ -105,7 +105,7 @@ def bokeh_2d_scatter_new(
         title=title,
     )
     p.circle('x', 'y', size=10, source=source, fill_color="color", legend_group="hue")
-    p.legend.location = "top_left"
+    p.legend.location = "bottom_left"
     p.legend.click_policy="hide"
 
     show(p)
