@@ -55,39 +55,28 @@ def bokeh_2d_scatter(x, y, desc, figsize=(700, 700), colors=None, use_nb=False, 
 
 
 
-def bokeh_2d_scatter_new(df, x, y, hue, label, figsize=(700, 700), use_nb=False, title="Bokeh scatter plot"):
+def bokeh_2d_scatter_new(
+        df, x, y, hue, label, color_column=None,
+        figsize=(700, 700), use_nb=False, title="Bokeh scatter plot"
+    ):
 
     if use_nb:
         output_notebook()
     
     assert {x, y, hue, label}.issubset(set(df.keys()))
 
-    # colors = [
-    #     '#99d594', '#ffffbf', '#fc8d59', '#2b83ba', '#abdda4',
-    #     '#fdae61', '#d7191c', '#2b83ba', '#abdda4', '#ffffbf',
-    #     '#fdae61', '#d7191c', '#3288bd', '#99d594', '#e6f598',
-    #     '#fee08b', '#fc8d59', '#d53e4f', '#3288bd', '#99d594',
-    #     '#e6f598', '#ffffbf', '#fee08b', '#fc8d59', '#d53e4f',
-    #     '#3288bd', '#66c2a5', '#abdda4', '#e6f598', '#fee08b',
-    #     '#fdae61', '#f46d43', '#d53e4f', '#3288bd', '#66c2a5',
-    #     '#abdda4', '#e6f598', '#ffffbf', '#fee08b', '#fdae61',
-    #     '#f46d43', '#d53e4f', '#5e4fa2', '#3288bd', '#66c2a5',
-    #     '#abdda4', '#e6f598', '#fee08b', '#fdae61', '#f46d43',
-    #     '#d53e4f', '#9e0142', '#5e4fa2', '#3288bd', '#66c2a5',
-    #     '#abdda4', '#e6f598', '#ffffbf', '#fee08b', '#fdae61',
-    #     '#f46d43', '#d53e4f', '#9e0142'
-    # ]
-    # colors = list(mcolors.CSS4_COLORS.values())
-    # import ipdb; ipdb.set_trace()
-    colors = list(mcolors.BASE_COLORS.keys()) + list(mcolors.TABLEAU_COLORS.values())
-    
-    colors = itertools.cycle(np.unique(colors))
+    if isinstance(color_column, str) and color_column in df.keys():
+        color_column_name = color_column
+    else:
+        colors = list(mcolors.BASE_COLORS.keys()) + list(mcolors.TABLEAU_COLORS.values())
+        colors = itertools.cycle(np.unique(colors))
 
-    hue_to_color = dict()
-    unique_hues = np.unique(df[hue].values)
-    for _hue in unique_hues:
-        hue_to_color[_hue] = next(colors)
-    df["color"] = df[hue].apply(lambda k: hue_to_color[k])
+        hue_to_color = dict()
+        unique_hues = np.unique(df[hue].values)
+        for _hue in unique_hues:
+            hue_to_color[_hue] = next(colors)
+        df["color"] = df[hue].apply(lambda k: hue_to_color[k])
+        color_column_name = "color"
 
     source = ColumnDataSource(
         dict(
@@ -95,7 +84,7 @@ def bokeh_2d_scatter_new(df, x, y, hue, label, figsize=(700, 700), use_nb=False,
             y = df[y].values,
             hue = df[hue].values,
             label = df[label].values,
-            color = df["color"].values,
+            color = df[color_column_name].values,
         )
     )
 
@@ -110,7 +99,13 @@ def bokeh_2d_scatter_new(df, x, y, hue, label, figsize=(700, 700), use_nb=False,
         )
 
     p = figure(
-        plot_width=figsize[0], plot_height=figsize[1], tools=["pan","wheel_zoom","box_zoom","save","reset","help"] + [hover], title=title,
+        plot_width=figsize[0],
+        plot_height=figsize[1],
+        tools=["pan","wheel_zoom","box_zoom","save","reset","help"] + [hover],
+        title=title,
     )
-    p.circle('x', 'y', size=10, source=source, fill_color="color")
+    p.circle('x', 'y', size=10, source=source, fill_color="color", legend_group="hue")
+    p.legend.location = "top_left"
+    p.legend.click_policy="hide"
+
     show(p)
