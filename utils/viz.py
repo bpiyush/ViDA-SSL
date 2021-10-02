@@ -57,7 +57,8 @@ def bokeh_2d_scatter(x, y, desc, figsize=(700, 700), colors=None, use_nb=False, 
 
 def bokeh_2d_scatter_new(
         df, x, y, hue, label, color_column=None,
-        figsize=(700, 700), use_nb=False, title="Bokeh scatter plot"
+        figsize=(700, 700), use_nb=False, title="Bokeh scatter plot",
+        legend_loc="bottom_left",
     ):
 
     if use_nb:
@@ -105,7 +106,7 @@ def bokeh_2d_scatter_new(
         title=title,
     )
     p.circle('x', 'y', size=10, source=source, fill_color="color", legend_group="hue")
-    p.legend.location = "bottom_left"
+    p.legend.location = legend_loc
     p.legend.click_policy="hide"
 
     show(p)
