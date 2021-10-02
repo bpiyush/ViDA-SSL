@@ -17,12 +17,13 @@ class UCF:
         """
         return re.sub(r'(?<!^)(?=[A-Z])', '_', string).lower()
     
-    def _load_annotations(self, filename="Class Index.txt", task: str = "action-clf"):
+    def _load_annotations(self, filename="Class Index.txt", task: str = "action-clf", delimiter="\n"):
         annot_file = join(self.data_dir, "annotations", task, filename)
         with open(annot_file, "rb") as f:
             lines = f.read()
             lines = lines.decode("utf-8")
-            lines = lines.split("\r\n")
+            assert delimiter in lines
+            lines = lines.split(delimiter)
 
         class_label_dict = {
             x.split(" ")[0]: self.camel_to_snake(x.split(" ")[-1]).replace("_", " ") for x in lines[:-1]
