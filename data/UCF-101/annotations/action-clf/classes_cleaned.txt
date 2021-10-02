@@ -1,0 +1,101 @@
+1 Apply Eye Makeup
+2 Apply Lipstick
+3 Archery
+4 Baby Crawling
+5 Balance Beam
+6 Band Marching
+7 Baseball Pitch
+8 Basketball Shooting
+9 Basketball Dunk
+10 Bench Press
+11 Biking
+12 Billiards Shot
+13 Blow Dry Hair
+14 Blowing Candles
+15 Body Weight Squats
+16 Bowling
+17 Boxing Punching Bag
+18 Boxing Speed Bag
+19 Breaststroke
+20 Brushing Teeth
+21 Clean and Jerk
+22 Cliff Diving
+23 Cricket Bowling
+24 Cricket Shot
+25 Cutting In Kitchen
+26 Diving
+27 Drumming
+28 Fencing
+29 Field Hockey Penalty
+30 Floor Gymnastics
+31 Frisbee Catch
+32 Front Crawl
+33 Golf Swing
+34 Haircut
+35 Hammer Throw
+36 Hammering
+37 Handstand Pushups
+38 Handstand Walking
+39 Head Massage
+40 High Jump
+41 Horse Race
+42 Horse Riding
+43 Hula Hoop
+44 Ice Dancing
+45 Javelin Throw
+46 Juggling Balls
+47 Jump Rope
+48 Jumping Jack
+49 Kayaking
+50 Knitting
+51 Long Jump
+52 Lunges
+53 Military Parade
+54 Mixing Batter
+55 Mopping Floor
+56 Nun chucks
+57 Parallel Bars
+58 Pizza Tossing
+59 Playing Guitar
+60 Playing Piano
+61 Playing Tabla
+62 Playing Violin
+63 Playing Cello
+64 Playing Daf
+65 Playing Dhol
+66 Playing Flute
+67 Playing Sitar
+68 Pole Vault
+69 Pommel Horse
+70 Pull Ups
+71 Punch
+72 Push Ups
+73 Rafting
+74 Rock Climbing Indoor
+75 Rope Climbing
+76 Rowing
+77 Salsa Spins
+78 Shaving Beard
+79 Shotput
+80 Skate Boarding
+81 Skiing
+82 Skijet
+83 Sky Diving
+84 Soccer Juggling
+85 Soccer Penalty
+86 Still Rings
+87 Sumo Wrestling
+88 Surfing
+89 Swing
+90 Table Tennis Shot
+91 Tai Chi
+92 Tennis Swing
+93 Throw Discus
+94 Trampoline Jumping
+95 Typing
+96 Uneven Bars
+97 Volleyball Spiking
+98 Walking with a dog
+99 Wall Pushups
+100 Writing On Board
+101 Yo Yo
