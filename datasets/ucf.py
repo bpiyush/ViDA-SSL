@@ -26,6 +26,6 @@ class UCF:
             lines = lines.split(delimiter)
 
         class_label_dict = {
-            x.split(" ")[0]: self.camel_to_snake(x.split(" ")[-1]).replace("_", " ") for x in lines[:-1]
+            x.split(" ")[0]: " ".join(x.split(" ")[1:]) for x in lines
         }
         return class_label_dict
