@@ -1,0 +1,50 @@
+Method,Dataset,Dataset size,Top-1
+No pretraining,UCF,1000,43.14
+SELAVI,UCF,1000,69.18
+RSPNET,UCF,1000,0
+Video Moco,UCF,1000,65.82
+Pretext-Contrast,UCF,1000,62.7
+CTP,UCF,1000,54.61
+TCLR,UCF,1000,70.55
+GDT,UCF,1000,77.8
+Supervised pretraining,UCF,1000,86.02
+,,,
+No pretraining,UCF,2000,55.35
+SELAVI,UCF,2000,76.16
+RSPNET,UCF,2000,0
+Video Moco,UCF,2000,75.07
+Pretext-Contrast,UCF,2000,77.74
+CTP,UCF,2000,77.48
+TCLR,UCF,2000,82.18
+GDT,UCF,2000,85.12
+Supervised pretraining,UCF,2000,88.98
+,,,
+No pretraining,UCF,4000,69.65
+SELAVI,UCF,4000,82.13
+RSPNET,UCF,4000,0
+Video Moco,UCF,4000,81.68
+Pretext-Contrast,UCF,4000,85.3
+CTP,UCF,4000,83.85
+TCLR,UCF,4000,88.77
+GDT,UCF,4000,89.19
+Supervised pretraining,UCF,4000,92.55
+,,,
+No pretraining,UCF,8000,71.27
+SELAVI,UCF,8000,83.45
+RSPNET,UCF,8000,0
+Video Moco,UCF,8000,84.64
+Pretext-Contrast,UCF,8000,88.05
+CTP,UCF,8000,88.66
+TCLR,UCF,8000,89.69
+GDT,UCF,8000,90.99
+Supervised pretraining,UCF,8000,93.47
+,,,
+No pretraining,UCF,Full,75.36
+SELAVI,UCF,Full,84.88
+RSPNET,UCF,Full,0
+Video Moco,UCF,Full,85.83
+Pretext-Contrast,UCF,Full,86.6
+CTP,UCF,Full,89.77
+TCLR,UCF,Full,90.77
+GDT,UCF,Full,91.14
+Supervised pretraining,UCF,Full,94.08
