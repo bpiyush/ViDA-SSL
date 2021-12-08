@@ -27,3 +27,28 @@ def get_phrase_embedding(model, tokenizer, phrase, layers=[-4, -3, -2, -1], agg_
     phrase_embedding = getattr(torch, agg_method)(phrase_word_embeddings, dim=0)
     
     return phrase_embedding
+
+
+def get_sentence_embedding(model, tokenizer, sentence):
+    encoded = tokenizer.encode_plus(sentence, return_tensors="pt")
+
+    with torch.no_grad():
+        output = model(**encoded)
+    
+    last_hidden_state = output.last_hidden_state
+    assert last_hidden_state.shape[0] == 1
+    assert last_hidden_state.shape[-1] == 768
+    
+    # only pick the [CLS] token embedding (sentence embedding)
+    sentence_embedding = last_hidden_state[0, 0]
+    
+    return sentence_embedding
+
+
+def get_sent_emb_from_word_emb(model, tokenizer, sentence):
+    encoded = tokenizer.encode_plus(sentence, return_tensors="pt")
+
+    with torch.no_grad():
+        sent_emb = model.embeddings.word_embeddings(encoded["input_ids"]).mean(1)[0]
+    
+    return sent_emb
