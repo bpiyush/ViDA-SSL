@@ -110,3 +110,73 @@ CTP,Gym99,Full,92.17
 TCLR,Gym99,Full,91.49
 GDT,Gym99,Full,90.36
 Supervised pretraining,Gym99,Full,91.77
+,,,
+No pretraining,SS,1000,1.38
+SELAVI,SS,1000,3.42
+RSPNET,SS,1000,0
+Video Moco,SS,1000,7.27
+Pretext-Contrast,SS,1000,2.42
+CTP,SS,1000,4.16
+TCLR,SS,1000,4.75
+GDT,SS,1000,5.25
+Supervised pretraining,SS,1000,7.11
+,,,
+No pretraining,SS,2000,2.16
+SELAVI,SS,2000,6.23
+RSPNET,SS,2000,0
+Video Moco,SS,2000,10.63
+Pretext-Contrast,SS,2000,3.82
+CTP,SS,2000,8.35
+TCLR,SS,2000,9.63
+GDT,SS,2000,10.1
+Supervised pretraining,SS,2000,11.11
+,,,
+No pretraining,SS,4000,5.97
+SELAVI,SS,4000,11.77
+RSPNET,SS,4000,0
+Video Moco,SS,4000,16.3
+Pretext-Contrast,SS,4000,7.38
+CTP,SS,4000,12.28
+TCLR,SS,4000,16.12
+GDT,SS,4000,15.72
+Supervised pretraining,SS,4000,15.65
+,,,
+No pretraining,SS,8000,14.16
+SELAVI,SS,8000,20.89
+RSPNET,SS,8000,0
+Video Moco,SS,8000,25.94
+Pretext-Contrast,SS,8000,14.15
+CTP,SS,8000,21.84
+TCLR,SS,8000,26.75
+GDT,SS,8000,25.43
+Supervised pretraining,SS,8000,27.3
+,,,
+No pretraining,SS,16000,23.61
+SELAVI,SS,16000,29.97
+RSPNET,SS,16000,0
+Video Moco,SS,16000,35.12
+Pretext-Contrast,SS,16000,26.13
+CTP,SS,16000,32.01
+TCLR,SS,16000,36.72
+GDT,SS,16000,34.27
+Supervised pretraining,SS,16000,36.98
+,,,
+No pretraining,SS,32000,36.22
+SELAVI,SS,32000,38.7
+RSPNET,SS,32000,0
+Video Moco,SS,32000,43.34
+Pretext-Contrast,SS,32000,36.7
+CTP,SS,32000,42.37
+TCLR,SS,32000,44.91
+GDT,SS,32000,42.1
+Supervised pretraining,SS,32000,45.34
+,,,
+No pretraining,SS,Full,56.81
+SELAVI,SS,Full,56.37
+RSPNET,SS,Full,0
+Video Moco,SS,Full,58.75
+Pretext-Contrast,SS,Full,57
+CTP,SS,Full,60.16
+TCLR,SS,Full,59.64
+GDT,SS,Full,57.78
+Supervised pretraining,SS,Full,61.02
