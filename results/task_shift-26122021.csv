@@ -1,0 +1,10 @@
+Method,Action recognition (Top-1),Spatio-temporal (IoU@0.5),Repetition (MAE),AoT (Top-1)
+No pretraining ,75.36,0.3273,0.232,78.21
+RSPNET,84.88,0.4401,0.16,79.52
+Video Moco,85.59,0.4374,0.1759,94.12
+Pretext-Contrast,85.83,0.4619,0.1685,95.78
+Selavi,86.6,0.4192,0.1512,94.83
+TCLR,89.77,0.4764,0.1493,97.12
+CTP,90.77,0.4646,0.1783,95.69
+GDT,91.14,0.4629,0.1367,95.52
+Supervised pretraining ,94.08,0.4825,0.1366,95.71
