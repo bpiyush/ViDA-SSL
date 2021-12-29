@@ -4,6 +4,12 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 
+colors_v1 = ["silver", "hotpink", "gold", "yellowgreen", "cornflowerblue", "purple", "blue", "red", "black"]
+colors_v2 = ["gray", "gold", "skyblue", "green", "darkorange", "lightseagreen", "blue", "red", "black"]
+colors_v3 = ["darkgray", "violet", "indigo", "blue", "green", "gold", "orange", "red", "black"]
+colors_v4 = ["lightgray", "gold", "skyblue", "green", "darkorange", "lightseagreen", "blue", "red", "black"]
+
+
 def heatmap(df, titlesize=20, labelsize=15, tickssize=13):
     fig, ax = plt.subplots(1, 1, figsize=(7, 6))
 
