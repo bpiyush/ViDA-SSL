@@ -1,0 +1,10 @@
+,UCF101,Epoch
+None ​,56.106,
+RSPNET​,86.955,
+Video Moco​,72.905,
+Pretext-Contrast​,77.227,
+SELAVI​,77.439,
+TCLR​,85.633,
+CTP​,77.055,
+GDT​,76.368,
+Full-supervision​,77.029,
