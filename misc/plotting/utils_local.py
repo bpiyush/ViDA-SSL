@@ -20,6 +20,7 @@ GID = {
     "domain_shift_finetune": "890573593",
     "dataset_size": "1134984848",
     "ss-v2-granularity": "1950972304",
+    "task_shift_ucf": "2027018770",
 }
 
 
@@ -127,3 +128,43 @@ def scatter_with_correlation(
     
     if show:
         plt.show()
+        
+
+def load_finegym_results(order_by_ucf_finetune=True):
+    df = read_spreadsheet(gid_key="granularity")
+
+    # deletes row 0
+    df = df.drop(index=0).reset_index(drop=True)
+    df.dropna(inplace=True)
+
+    # rename columns
+    df = df.rename(
+        columns={
+            "Unnamed: 0": "Method",
+            "Gym99": "Gym99 (99) (video)",
+            "Unnamed: 2": "Gym99 (99) (class)",
+            "Gym288": "Gym288 (288) (video)",
+            "Unnamed: 4": "Gym288 (288) (class)",
+            "Vault (6)": "Vault (6) (video)",
+            "Unnamed: 6": "Vault (6) (class)",
+            "FX": "FX (35) (video)",
+            "Unnamed: 8": "FX (35) (class)",
+            "FX-S1 (11)": "FX-S1 (11) (video)",
+            "Unnamed: 10": "FX-S1 (11) (class)",
+            "UB-S1": "UB-S1 (15) (video)",
+            "Unnamed: 12": "UB-S1 (15) (class)",
+        }
+    )
+
+    # convert everything to float
+    for col in df.columns:
+        if col != "Method":
+            df[col] = df[col].astype(float)
+
+    # reorder columns based on UCF performance
+    if order_by_ucf_finetune:
+        df_finetune = read_spreadsheet(gid_key="domain_shift_finetune", index_col=0)
+        df_finetune.sort_values("UCF101", inplace=True)
+        df = df.set_index("Method").loc[list(df_finetune.index)].reset_index()
+    
+    return df
