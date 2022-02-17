@@ -94,10 +94,11 @@ def load_domain_shift_results(remove_K400=True):
 
 
 def scatter_with_correlation(
-        xvalues, yvalues, labels, colors=colors_v1,
+        xvalues, yvalues, labels, colors=colors_v1, regcolor=None,
         title="", xlabel="X", ylabel="Y", ax=None, legend=False, show=False, 
         titlesize=25, xlabelsize=20, ylabelsize=20, legendsize=20, markersize=80, size_alpha=1.0,
-        legend_kwargs=dict(loc='upper center', bbox_to_anchor=(1.3, 0.9))
+        legend_kwargs=dict(loc='upper center', bbox_to_anchor=(1.3, 0.9)), add_corr_to_title=True,
+        add_corr_to_text=False,
     ):
 
     if ax is None:
@@ -112,14 +113,26 @@ def scatter_with_correlation(
     for (x, y, l, c) in zip(xvalues, yvalues, labels, colors):
         ax.scatter(x, y, label=l, color=c, s=markersize * size_alpha)
 
-    sns.regplot(x=xvalues, y=yvalues, ax=ax, scatter=False)
+    sns.regplot(x=xvalues, y=yvalues, ax=ax, scatter=False, color=regcolor)
 
     ax.set_xlabel(xlabel, fontsize=xlabelsize * size_alpha)
     ax.set_ylabel(ylabel, fontsize=ylabelsize * size_alpha)
 
-    corr = np.round(np.corrcoef(xvalues, yvalues)[0, 1], decimals=3)
-    corr = f"$\\rho = {corr}$"
-    ax.set_title("{} ({})".format(title, corr), fontsize=titlesize * size_alpha)
+    corr_val = np.round(np.corrcoef(xvalues, yvalues)[0, 1], decimals=3)
+    # corr = f"$\\rho = {corr_val}$"
+    corr = f"$r = {corr_val}$"
+    title = title + " ({})".format(corr) * add_corr_to_title
+    if len(title):
+        ax.set_title(title, fontsize=titlesize * size_alpha)
+
+    if add_corr_to_text:
+        ax.text(
+            s=corr, x=0.5, y=0.1,
+            fontsize=legendsize * size_alpha,
+            horizontalalignment='center',
+            verticalalignment='center',
+            transform=ax.transAxes,
+        )
     
     if legend:
         if "fontsize" not in legend_kwargs:
