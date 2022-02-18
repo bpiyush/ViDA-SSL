@@ -181,3 +181,34 @@ def load_finegym_results(order_by_ucf_finetune=True):
         df = df.set_index("Method").loc[list(df_finetune.index)].reset_index()
     
     return df
+
+
+def load_task_shift_results(complement_repetition=True):
+    df = read_spreadsheet(gid_key="task_shift_ucf")
+
+    # consider complement on Repetition
+    if complement_repetition:
+        df["UCF - Repetition (MAE)"] = 1 - df["UCF - Repetition (MAE)"]
+        # df["Repetition (1 - MAE)"] = df["Repetition (MAE)"]
+        df.rename(columns={"UCF - Repetition (MAE)": "UCF - Repetition (1 - MAE)"}, inplace=True)
+
+    # order by Action recognition
+    df.sort_values("UCF - Action recognition (Top-1)", inplace=True)
+
+    # reorder tasks
+    repetition_key = "UCF - Repetition (1 - MAE)" if complement_repetition else "UCF - Repetition (MAE)"
+    correct_order = [
+        "Method",
+        "UCF - Action recognition (Top-1)",
+        "UCF - Spatio-temporal (IoU@0.5)",
+        repetition_key,
+        "UCF - AoT (Top-1)",
+        "Charades - Multi-label (mAP)",
+        "AVA - Spatio-temporal (mAP)",
+    ]
+    df = df[correct_order]
+
+    # set index
+    df.set_index("Method", inplace=True)
+    
+    return df
