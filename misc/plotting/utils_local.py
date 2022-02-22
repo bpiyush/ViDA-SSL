@@ -21,6 +21,7 @@ GID = {
     "dataset_size": "1134984848",
     "ss-v2-granularity": "1950972304",
     "task_shift_ucf": "2027018770",
+    "epic_tasks": "1308272186",
 }
 
 
