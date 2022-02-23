@@ -59,7 +59,7 @@ def find_sub_element_in_list(x, L):
             return y
 
 
-def load_domain_shift_results(remove_K400=True):
+def load_domain_shift_results(remove_K400=True, remove_scratch=False, remove_supervised=False):
     df_linear = read_spreadsheet(gid_key="domain_shift_linear", index_col=0)
     df_finetune = read_spreadsheet(gid_key="domain_shift_finetune", index_col=0)
 
@@ -68,6 +68,14 @@ def load_domain_shift_results(remove_K400=True):
     df_finetune.sort_values(ref_dataset, inplace=True)
     df_linear = df_linear.loc[list(df_finetune.index)]
     
+    if remove_scratch:
+        df_linear.drop(index=["None"], inplace=True)
+        df_finetune.drop(index=["None"], inplace=True)
+
+    if remove_scratch:
+        df_linear.drop(index=["Supervised"], inplace=True)
+        df_finetune.drop(index=["Supervised"], inplace=True)
+
     # remove column for `K400`
     k400_values = dict()
     k400_values["Method"] = list(df_finetune.index)
@@ -76,6 +84,7 @@ def load_domain_shift_results(remove_K400=True):
             k400_linear = df_linear["K400"].values
             k400_values["linear"] = k400_linear
             df_linear.drop(columns=["K400"], inplace=True)
+            
         if "K400" in df_finetune.columns:
             k400_finetune = df_finetune["K400"].values
             k400_values["finetune"] = k400_finetune
@@ -83,9 +92,11 @@ def load_domain_shift_results(remove_K400=True):
     
     # re-order datasets
     if remove_K400:
-        correct_order = ["UCF", "NTU", "Gym", "SS", "EPIC"]
+        correct_order = ["UCF101", "NTU60", "SSv2", "Gym99", "EPIC (V)"]
+        # correct_order = ["UCF", "NTU", "Gym", "SS", "EPIC"]
     else:
-        correct_order = ["K400", "UCF", "NTU", "Gym", "SS", "EPIC"]
+        correct_order = ["K400", "UCF101", "NTU60", "SSv2", "Gym99", "EPIC (V)"]
+        # correct_order = ["K400", "UCF", "NTU", "Gym", "SS", "EPIC"]
     reorder_colums = [find_sub_element_in_list(x, df_linear.columns) for x in correct_order]
     df_linear = df_linear[reorder_colums]
     df_finetune = df_finetune[reorder_colums]
@@ -144,12 +155,13 @@ def scatter_with_correlation(
         plt.show()
         
 
-def load_finegym_results(order_by_ucf_finetune=True):
+def load_finegym_results(order_by_ucf_finetune=True, remove_scratch=False, remove_supervised=False):
     df = read_spreadsheet(gid_key="granularity")
 
     # deletes row 0
     df = df.drop(index=0).reset_index(drop=True)
     df.dropna(inplace=True)
+    
 
     # rename columns
     df = df.rename(
@@ -181,10 +193,16 @@ def load_finegym_results(order_by_ucf_finetune=True):
         df_finetune.sort_values("UCF101", inplace=True)
         df = df.set_index("Method").loc[list(df_finetune.index)].reset_index()
     
+    if remove_scratch:
+        df = df.set_index("Method").drop(index=["None"]).reset_index()
+
+    if remove_supervised:
+        df = df.set_index("Method").drop(index=["Supervised"]).reset_index()
+
     return df
 
 
-def load_task_shift_results(complement_repetition=True):
+def load_task_shift_results(complement_repetition=True, remove_scratch=False, remove_supervised=False):
     df = read_spreadsheet(gid_key="task_shift_ucf")
 
     # consider complement on Repetition
@@ -212,4 +230,10 @@ def load_task_shift_results(complement_repetition=True):
     # set index
     df.set_index("Method", inplace=True)
     
+    if remove_scratch:
+        df.drop(index=["None"], inplace=True)
+
+    if remove_supervised:
+        df.drop(index=["Supervised"], inplace=True)
+
     return df
