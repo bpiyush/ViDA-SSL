@@ -72,7 +72,7 @@ def load_domain_shift_results(remove_K400=True, remove_scratch=False, remove_sup
         df_linear.drop(index=["None"], inplace=True)
         df_finetune.drop(index=["None"], inplace=True)
 
-    if remove_scratch:
+    if remove_supervised:
         df_linear.drop(index=["Supervised"], inplace=True)
         df_finetune.drop(index=["Supervised"], inplace=True)
 
