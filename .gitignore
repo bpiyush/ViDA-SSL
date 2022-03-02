@@ -1,5 +1,9 @@
 
 *.word2vec.*.txt
+*.DS_Store
+
+data/AVA/
+data/charades/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
