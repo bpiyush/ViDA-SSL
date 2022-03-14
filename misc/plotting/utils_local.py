@@ -23,6 +23,7 @@ GID = {
     "task_shift_ucf": "2027018770",
     "epic_tasks": "1308272186",
     "temporality": "513956600",
+    "dataset_size_linear": "399502912",
 }
 
 
@@ -111,7 +112,7 @@ def scatter_with_correlation(
         title="", xlabel="X", ylabel="Y", ax=None, legend=False, show=False, 
         titlesize=25, xlabelsize=20, ylabelsize=20, legendsize=20, markersize=80, size_alpha=1.0,
         legend_kwargs=dict(loc='upper center', bbox_to_anchor=(1.3, 0.9)), add_corr_to_title=True,
-        add_corr_to_text=False,
+        add_corr_to_text=False, markers=None,
     ):
 
     if ax is None:
@@ -122,9 +123,14 @@ def scatter_with_correlation(
     # yvalues = dfs["Coarse"]["Accuracy"].values
     # labels = dfs["Coarse"]["Method"].values
     # colors = colors_v1
+    
+    if markers is None:
+        markers = [None for _ in range(len(xvalues))]
 
-    for (x, y, l, c) in zip(xvalues, yvalues, labels, colors):
-        ax.scatter(x, y, label=l, color=c, s=markersize * size_alpha)
+    for (x, y, l, c, m) in zip(xvalues, yvalues, labels, colors, markers):
+        ax.scatter(x, y, label=l, color=c, s=markersize * size_alpha, marker=m)
+    # for (x, y, l, c, m) in zip(xvalues, yvalues, labels, colors, markers):
+    #     ax.scatter(x, y, label=l, color=c, s=markersize * size_alpha, marker=m, edgecolors=c, facecolors="white", linewidth=2.2)
 
     sns.regplot(x=xvalues, y=yvalues, ax=ax, scatter=False, color=regcolor)
 
